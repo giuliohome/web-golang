@@ -38,4 +38,4 @@ spec:
     - port: 80
       targetPort: 8080
   selector:
-    app: ke-golang-web
+    app: gke-golang-web
