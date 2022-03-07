@@ -20,3 +20,7 @@ jobs:
 
     - name: Build
       run: go build web.go
+
+
+    - name: Test
+      run: ls -l web*
