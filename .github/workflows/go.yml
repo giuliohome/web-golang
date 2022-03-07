@@ -24,7 +24,16 @@ jobs:
 
     - name: Test
       run: ls -l web*
-
+  
+  # upload build artifact
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.0.0
+      with:
+        # Artifact name
+        name: web
+        # A file, directory or wildcard pattern that describes what to upload
+        path: web 
+    
   # define job to build and publish docker image
   build-and-push-docker-image:
     name: Build Docker image and push to hub repository
