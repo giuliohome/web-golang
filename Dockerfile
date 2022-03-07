@@ -4,7 +4,8 @@ COPY web .
 COPY edit.html .
 COPY view.html .
 RUN chmod +x web
-RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 # https://stackoverflow.com/a/35613430
+# https://stackoverflow.com/a/35613430
+RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 
 EXPOSE 8080
 CMD ["./web"]
 # docker build --tag docker-golang-web .
