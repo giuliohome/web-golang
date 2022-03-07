@@ -105,7 +105,7 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v0'
       with:
-        workload_identity_provider: 'projects/93366402692/locations/global/workloadIdentityPools/my-pool/providers/	my-identity-pool'
+        workload_identity_provider: 'projects/93366402692/locations/global/workloadIdentityPools/my-identity-pool/providers/giulio'
         service_account: 'github-actions@my-cloud-giulio.iam.gserviceaccount.com'
 
 
