@@ -38,4 +38,4 @@ spec:
     - port: 80
       targetPort: 8080
   selector:
-    app: gke-hello-app
+    app: gke-golang-app
