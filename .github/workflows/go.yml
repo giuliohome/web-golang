@@ -45,6 +45,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+
+
+      - name: Download build result for job 1
+        uses: actions/download-artifact@v3
+        with:
+          name: web
+
       # setup Docker buld action
       - name: Set up Docker Buildx
         id: buildx
