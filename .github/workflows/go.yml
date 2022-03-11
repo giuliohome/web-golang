@@ -122,3 +122,24 @@ jobs:
         kubectl apply -f deployment.yml
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
+
+# Cypress Tests using Cypress Docker Image
+  cypress-run:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          record: true
+          # Specify Browser since container image is compile with Firefox
+          browser: firefox
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.EXAMPLE_RECORDING_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
