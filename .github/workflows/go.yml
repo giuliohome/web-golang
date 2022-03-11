@@ -125,6 +125,7 @@ jobs:
 
 # Cypress Tests using Cypress Docker Image
   cypress-run:
+    needs: gke-deploy
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
@@ -137,6 +138,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           record: true
+          key: $GKE_CLUSTER
           # Specify Browser since container image is compiled with Chrome
           browser: chrome
         env:
