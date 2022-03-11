@@ -137,8 +137,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           record: true
-          # Specify Browser since container image is compile with Firefox
-          browser: firefox
+          # Specify Browser since container image is compiled with Chrome
+          browser: chrome
         env:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.EXAMPLE_RECORDING_KEY }}
