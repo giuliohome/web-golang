@@ -43,3 +43,18 @@ and eventually
 ```
 docker system prune -a
 ```
+
+## end to end testing
+
+useful commands, especially for local dev
+```
+npx cypress run --spec cypress\integration\1-getting-started\web-golang.js
+```
+and 
+```
+npx cypress open
+```
+
+
+
+
