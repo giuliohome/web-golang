@@ -54,6 +54,7 @@ and
 ```
 npx cypress open
 ```
+![image](https://user-images.githubusercontent.com/3272563/158066376-db8e0e1f-7442-4bda-bc17-cd75b1979529.png)
 
 
 
