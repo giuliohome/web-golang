@@ -25,6 +25,7 @@ describe('golang web app', () => {
 
     cy.get('h1').first().should('have.text', 'a1')
     cy.get('div').last().should('have.text', 'web app in golang tested OK! ;-)')
+    cy.screenshot()
   })
 
 
@@ -48,6 +49,7 @@ describe('golang web app', () => {
 
     // Finally, make sure that the clear button no longer exists.
     cy.contains('edit').should('not.exist')
+    cy.screenshot()
   })
   
 })
