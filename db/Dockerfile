@@ -1,3 +1,4 @@
+# CGO_ENABLED=0 go build db.go
 FROM busybox
 COPY ./db /db
 CMD ["/db"]
