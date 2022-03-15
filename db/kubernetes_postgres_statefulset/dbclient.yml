@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: golang-db
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: golang-db
+    spec:
+      containers:
+      - name: db-app
+        image: golangdb
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 100m
