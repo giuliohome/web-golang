@@ -56,6 +56,13 @@ npx cypress open
 ```
 ![image](https://user-images.githubusercontent.com/3272563/158066376-db8e0e1f-7442-4bda-bc17-cd75b1979529.png)
 
+## lens + minikube + stateful db pod 
+
+log from golang console
+
+![image](https://user-images.githubusercontent.com/3272563/158406574-13008fcd-6c6e-48e4-b81a-25bfd4b72caa.png)
+
+
 
 
 
