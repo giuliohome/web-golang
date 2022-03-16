@@ -18,7 +18,7 @@ describe('golang web app', () => {
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
     loadbalancerIP = := os.Getenv("LB_IP")
-    cy.visit( fmt.Sprintf("http://%s/view/a1", loadbalancerIP) )
+    cy.visit( "http://" + Cypress.env('LB_IP') + "/view/a1" )
   })
 
   it('displays one h1 title by default', () => {
