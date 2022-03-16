@@ -34,7 +34,7 @@ minikube kubectl -- get all
 ```
 Open the browser and check it out
 
-Finally reclaim all the sapce
+Finally reclaim all the space
 ```
 minikube stop
 minikube delete --purge --all
@@ -58,7 +58,7 @@ npx cypress open
 
 ## lens + minikube + stateful db pod 
 
-log from golang console
+log from golang console seen inside Lens web frame for cluster observability
 
 ![image](https://user-images.githubusercontent.com/3272563/158406574-13008fcd-6c6e-48e4-b81a-25bfd4b72caa.png)
 
