@@ -17,7 +17,8 @@ describe('golang web app', () => {
     // so we must tell it to visit our website with the `cy.visit()` command.
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
-    cy.visit('http://35.202.164.184/view/a1')
+    loadbalancerIP = := os.Getenv("LB_IP")
+    cy.visit( fmt.Sprintf("http://%s/view/a1", loadbalancerIP) )
   })
 
   it('displays one h1 title by default', () => {
