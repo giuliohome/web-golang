@@ -1,4 +1,8 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=web-golang&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=web-golang)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=web-golang&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=web-golang)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=web-golang&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=web-golang)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=web-golang&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=web-golang)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=web-golang&metric=bugs)](https://sonarcloud.io/summary/new_code?id=web-golang)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=web-golang&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=web-golang)
 
 # web-golang
 web in go language from wiki example
