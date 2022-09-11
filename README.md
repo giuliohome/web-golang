@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=web-golang&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=web-golang)
+
 # web-golang
 web in go language from wiki example
 
