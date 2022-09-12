@@ -4,6 +4,8 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=web-golang&metric=bugs)](https://sonarcloud.io/summary/new_code?id=web-golang)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=web-golang&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=web-golang)
 
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=web-golang)](https://sonarcloud.io/summary/new_code?id=web-golang)
+
 # web-golang
 web in go language from wiki example
 
