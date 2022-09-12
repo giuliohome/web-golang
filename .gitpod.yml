@@ -5,12 +5,9 @@
 tasks:
   - init: |
       go build web.go
-      ./web
+      ./web &
+      gp ports await 8080 && gp preview $(gp url 8080)/edit/a1
 
 ports:
   - port: 8080
     visibility: private
-    onOpen: 
-       open-browser
-
-
