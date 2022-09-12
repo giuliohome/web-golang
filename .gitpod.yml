@@ -6,6 +6,7 @@ tasks:
   - init: |
       go build web.go
       ./web &
+      sleep 10
       gp ports await 8080 && gp preview $(gp url 8080)/edit/a1
 
 ports:
