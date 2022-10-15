@@ -89,18 +89,23 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	}
 }
 
-var validPath = regexp.MustCompile("^/((edit|save|view)/([a-zA-Z0-9]+)|version/)$")
+var validPath = regexp.MustCompile("^/((edit|save|view)/([a-zA-Z0-9]+)|(version)/)$")
 
 func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("url path %s\n", r.URL.Path)
 		m := validPath.FindStringSubmatch(r.URL.Path)
-		fmt.Printf("match found %s\n", m)
+		fmt.Printf("%d matches found %s\n", len(m), m)
 		if m == nil {
 			http.NotFound(w, r)
 			return
 		}
-		fn(w, r, m[3])
+		title := m[3]
+		if m[4] != "" {
+			title = m[4]
+		}
+		fmt.Printf("title %s\n", title)
+		fn(w, r, title)
 	}
 }
 

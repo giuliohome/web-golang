@@ -49,5 +49,6 @@ describe('golang web app', () => {
     // Finally, make sure that the clear button no longer exists.
     cy.contains('edit').should('not.exist')
   })
+
   
 })

@@ -25,7 +25,7 @@ jobs:
         go-version: 1.17
 
     - name: Build
-      run: go build -v -ldflags="-X 'main.Version=v1.0.0' -X 'github.com/giuliohome/web-golang/build.User=giuliohome' -X 'github.com/giuliohome/web-golang/build.Time=$(date)'" web.go
+      run: go build -v -ldflags="-X 'main.Version=v1.0.2' -X 'github.com/giuliohome/web-golang/build.User=giuliohome' -X 'github.com/giuliohome/web-golang/build.Time=$(date)'" web.go
 
 
     - name: Test
@@ -78,7 +78,7 @@ jobs:
           context: .
           # Note: tags has to be all lower-case
           tags: |
-            giuliohome/web.golang:v1.0.1 
+            giuliohome/web.golang:v1.0.2 
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
