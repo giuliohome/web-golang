@@ -11,7 +11,7 @@ env:
   GKE_CLUSTER: autopilot-cluster-1   # TODO: update to cluster name
   GKE_REGION: europe-west8	   # TODO: update to cluster region
   DEPLOYMENT_NAME: gke-golang-web # TODO: update deployment name if changed in deployment.yaml
-  VERSION: v1.0.3
+  VERSION: v1.0.4
   
 jobs:
   build:
@@ -123,6 +123,12 @@ jobs:
         kubectl apply -f deployment.yml
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
+        kubectl get services gke-golang-web-service --output jsonpath='{.status.loadBalancer.ingress[0].ip}' > myip.txt
+    - name: Upload ip for test job
+      uses: actions/upload-artifact@v1
+      with:
+        name: myip
+        path: ./myip.txt
 
 # Cypress Tests using Cypress Docker Image
   cypress-run:
@@ -130,6 +136,15 @@ jobs:
     runs-on: ubuntu-latest
     container: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
+      - name: Download myip from deploy job
+        uses: actions/download-artifact@v3
+        with:
+          name: myip
+      - name: Print the final result
+        shell: bash
+        run: |
+          export myip=`cat myip.txt`
+          echo The external ip is $myip
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -145,4 +160,4 @@ jobs:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          CYPRESS_LB_IP: ${{ secrets.CYPRESS_LB_IP }}
+          CYPRESS_LB_IP: ${{ env.myip }}
