@@ -143,8 +143,9 @@ jobs:
       - name: Print the final result
         shell: bash
         run: |
-          export CYPRESS_LB_IP=`cat myip.txt`
+          CYPRESS_LB_IP=`cat myip.txt`
           echo The external ip is $CYPRESS_LB_IP
+          echo "CYPRESS_LB_IP=$CYPRESS_LB_IP" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v2
 
