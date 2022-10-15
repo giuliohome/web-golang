@@ -1,4 +1,4 @@
-it('displays one h1 title by default', () => {
+it('displays version info', () => {
     cy.visit( "http://" + Cypress.env('LB_IP') + "/version/" )
     cy.get('h1').should('have.length', 1)
     cy.get('h1').first().should('have.text', 'version')
