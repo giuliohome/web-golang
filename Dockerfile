@@ -3,6 +3,7 @@ LABEL maintainer="giuliohome@gmail.com"
 COPY web .
 COPY edit.html .
 COPY view.html .
+COPY version.html .
 COPY a1.txt .
 RUN chmod +x web
 # https://stackoverflow.com/a/35613430
