@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: hello-app
-        image: giuliohome/web.golang:v1.0.2 
+        image: giuliohome/web.golang:${VERSION}
         ports:
         - containerPort: 8080
         resources:
