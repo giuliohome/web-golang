@@ -18,7 +18,8 @@ describe('golang web app', () => {
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
     cy.log('GKE External load balancer endpoint', Cypress.env('LB_IP'))
-    cy.visit( "http://" + Cypress.env('LB_IP') + "/view/a1" )
+    cy.log('non capisco che cazzo fai?? da dove cazzo prendi il tuo ip??')
+    // cy.visit( "http://" + Cypress.env('LB_IP') + "/view/a1" )
   })
 
   it('displays one h1 title by default', () => {
