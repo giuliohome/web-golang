@@ -143,8 +143,8 @@ jobs:
       - name: Print the final result
         shell: bash
         run: |
-          export myip=`cat myip.txt`
-          echo The external ip is $myip
+          export CYPRESS_LB_IP=`cat myip.txt`
+          echo The external ip is $CYPRESS_LB_IP
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -160,4 +160,3 @@ jobs:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          CYPRESS_LB_IP: ${{ env.myip }}
