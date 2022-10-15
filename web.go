@@ -8,6 +8,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/giuliohome/web-golang/build"
 	"html/template"
 	"log"
 	"net/http"
@@ -32,6 +33,23 @@ func loadPage(title string) (*Page, error) {
 		return nil, err
 	}
 	return &Page{Title: title, Body: body}, nil
+}
+
+type Versioning struct {
+	Title     string
+	SemVer    string
+	BuildTime string
+	BuildUser string
+}
+
+var Version = "development"
+
+func versionHandler(w http.ResponseWriter, r *http.Request, title string) {
+	v := &Versioning{Title: title, SemVer: Version, BuildTime: build.Time, BuildUser: build.User}
+	err := templates.ExecuteTemplate(w, "version.html", v)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
@@ -62,7 +80,7 @@ func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
 	http.Redirect(w, r, "/view/"+title, http.StatusFound)
 }
 
-var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+var templates = template.Must(template.ParseFiles("edit.html", "view.html", "version.html"))
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	err := templates.ExecuteTemplate(w, tmpl+".html", p)
@@ -71,7 +89,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	}
 }
 
-var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
+var validPath = regexp.MustCompile("^/((edit|save|view)/([a-zA-Z0-9]+)|version/)$")
 
 func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -87,9 +105,12 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
 }
 
 func main() {
+	fmt.Println("Version:\t", Version)
+	fmt.Println("build.Time:\t", build.Time)
+	fmt.Println("build.User:\t", build.User)
 	http.HandleFunc("/view/", makeHandler(viewHandler))
 	http.HandleFunc("/edit/", makeHandler(editHandler))
 	http.HandleFunc("/save/", makeHandler(saveHandler))
-
+	http.HandleFunc("/version/", makeHandler(versionHandler))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
