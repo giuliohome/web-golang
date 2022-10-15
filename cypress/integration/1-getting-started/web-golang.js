@@ -17,6 +17,7 @@ describe('golang web app', () => {
     // so we must tell it to visit our website with the `cy.visit()` command.
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
+    cy.log('GKE External load balancer endpoint', Cypress.env('LB_IP'))
     cy.visit( "http://" + Cypress.env('LB_IP') + "/view/a1" )
   })
 
