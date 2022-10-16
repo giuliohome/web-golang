@@ -2,16 +2,15 @@ name: Go
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: autopilot-cluster-1   # TODO: update to cluster name
   GKE_REGION: europe-west8	   # TODO: update to cluster region
   DEPLOYMENT_NAME: gke-golang-web # TODO: update deployment name if changed in deployment.yaml
-  VERSION: v1.0.5
+  VERSION: ${{  github.ref_name }}
   
 jobs:
   build:
