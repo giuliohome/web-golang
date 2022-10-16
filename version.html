@@ -1,7 +1,11 @@
 <h1>{{.Title}}</h1>
 
+{{if eq .Title "version"}}
 <p>Version: {{.SemVer}}</p>
+{{end}}
 
+{{if eq .Title "build"}}
 <p>Build Time: {{.BuildTime}}</p>
 
 <p>Build User: {{.BuildUser}}</p>
+{{end}}

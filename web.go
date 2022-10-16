@@ -89,7 +89,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	}
 }
 
-var validPath = regexp.MustCompile("^/((edit|save|view)/([a-zA-Z0-9]+)|(version)/)$")
+var validPath = regexp.MustCompile("^/((edit|save|view)/([a-zA-Z0-9]+)|(version|build)/)$")
 
 func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -117,5 +117,6 @@ func main() {
 	http.HandleFunc("/edit/", makeHandler(editHandler))
 	http.HandleFunc("/save/", makeHandler(saveHandler))
 	http.HandleFunc("/version/", makeHandler(versionHandler))
+	http.HandleFunc("/build/", makeHandler(versionHandler))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
