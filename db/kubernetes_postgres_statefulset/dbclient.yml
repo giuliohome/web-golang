@@ -19,10 +19,19 @@ spec:
     spec:
       containers:
       - name: db-app
-        image: golangdb
+        image: golangdb5
         imagePullPolicy: Never
         ports:
         - containerPort: 8080
+        env:
+          - name: DBHOST
+            value: postgres-service
+          - name: DBPSW
+            value: s3cr3!T
+          - name: POSTGRES_USER
+            value: appuser
+          - name: POSTGRES_DB
+            value: mydb
         resources:
           requests:
             cpu: 100m
