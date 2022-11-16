@@ -1,0 +1,1 @@
+create table mypages(key varchar(16) primary key, name varchar(128) not null check (name <> '') );

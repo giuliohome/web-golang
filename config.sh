@@ -7,3 +7,9 @@ docker build . -t golangdb --build-arg DBPSW --build-arg DBHOST --build-arg POST
 # kubectl apply -f dbclient.yml
 # or w/o kubernetes only docker
 # docker run -e DBHOST -e DBPSW -it golangdb
+
+DB_POD_NAME=$(kubectl get pods | grep golang-db | cut -d ' ' -f1)
+echo $DB_POD_NAME
+kubectl port-forward $DB_POD_NAME 8000:8080
+echo $POSTGRES_DB $POSTGRES_USER $DBPSW $DBHOST
+kubectl exec -ti postgres-statefulset-0 -- psql -U $POSTGRES_USER -d $POSTGRES_DB
