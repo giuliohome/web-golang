@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: gke-golang-web
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: gke-golang-web
@@ -17,16 +17,18 @@ spec:
       labels:
         app: gke-golang-web
     spec:
+      imagePullSecrets:
+       - name: do-registry
       containers:
       - name: hello-app
-        image: giuliohome/web.golang:latest
+        image: registry.digitalocean.com/giulio/golang-web:latest
         ports:
         - containerPort: 8080
         resources:
           requests:
-            cpu: 100m
+            cpu: 50m
           limits:
-            cpu: 100m
+            cpu: 50m
 ---
 apiVersion: v1
 kind: Service
