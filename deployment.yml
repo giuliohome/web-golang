@@ -18,11 +18,9 @@ spec:
       labels:
         app: golang-web
     spec:
-      imagePullSecrets:
-       - name: do-registry
       containers:
       - name: hello-app
-        image: giuliohome/web.golang:v1.2
+        image: <IMAGE>
         ports:
         - containerPort: 8080
         resources:
