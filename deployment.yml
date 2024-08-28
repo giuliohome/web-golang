@@ -1,12 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gke-golang-web
+  name: golang-web
+  namespace: backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gke-golang-web
+      app: golang-web
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -15,13 +16,13 @@ spec:
   template:
     metadata:
       labels:
-        app: gke-golang-web
+        app: golang-web
     spec:
       imagePullSecrets:
        - name: do-registry
       containers:
       - name: hello-app
-        image: registry.digitalocean.com/giulio/golang-web:latest
+        image: giuliohome/web.golang:v1.2
         ports:
         - containerPort: 8080
         resources:
@@ -30,14 +31,41 @@ spec:
           limits:
             cpu: 50m
 ---
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: gke-golang-web-service
+  name: web
+  namespace: backend
 spec:
-  type: LoadBalancer
   ports:
-    - port: 80
+    - name: http
+      port: 80
       targetPort: 8080
   selector:
-    app: gke-golang-web
+    app: golang-web
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-web
+  namespace: backend
+  annotations:
+    cert-manager.io/issuer: letsencrypt-nginx
+spec:
+  tls:
+    - hosts:
+      - web.giuliohome.org
+      secretName: letsencrypt-nginx-web
+  rules:
+    - host: web.giuliohome.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  number: 80
+  ingressClassName: nginx
