@@ -25,7 +25,7 @@ jobs:
         check-latest: true
     - run: go version
     - name: Build-Golang-App
-      run: GOOS=linux go build web.go
+      run: GOOS=linux CGO_ENABLED=0 go build web.go
     - name: Display-Build-Golang-App
       run: ls -l web      
 
