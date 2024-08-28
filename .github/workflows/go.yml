@@ -64,4 +64,4 @@ jobs:
       run: kubectl apply -f $GITHUB_WORKSPACE/deployment.yml
 
     - name: Verify deployment
-      run: kubectl rollout status deployment/golang-web
+      run: kubectl rollout status deployment/golang-web -n backend
