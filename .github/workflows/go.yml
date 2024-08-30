@@ -5,6 +5,7 @@ on:
       - digitalocean
   pull_request:
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
 jobs:
   # This workflow contains a single job called "build".
   build:
