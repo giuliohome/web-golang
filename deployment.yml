@@ -60,10 +60,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - webgolang.giuliohome.org
-      secretName: letsencrypt-nginx-webgolang
+      - golangweb.giuliohome.org
+      secretName: letsencrypt-nginx-golangweb
   rules:
-    - host: webgolang.giuliohome.org
+    - host: golangweb.giuliohome.org
       http:
         paths:
           - path: /
