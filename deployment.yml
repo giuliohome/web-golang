@@ -53,17 +53,17 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-web
+  name: ingress-myweb
   namespace: golang
   annotations:
     cert-manager.io/issuer: letsencrypt-nginx
 spec:
   tls:
     - hosts:
-      - golangweb.giuliohome.org
-      secretName: letsencrypt-nginx-golangweb
+      - myweb.giuliohome.org
+      secretName: letsencrypt-nginx-myweb
   rules:
-    - host: golangweb.giuliohome.org
+    - host: myweb.giuliohome.org
       http:
         paths:
           - path: /
