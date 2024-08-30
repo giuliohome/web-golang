@@ -50,6 +50,9 @@ jobs:
     - name: Update deployment file
       run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|${{ secrets.REGISTRY_NAME }}/golang-web:'${TAG}'|' $GITHUB_WORKSPACE/deployment.yml
 
+    - name: Update certificate email in issuer CRD
+      run: sed -i 's|<CERTIFICATE_EMAIL>|${{ secrets.CERTIFICATE_EMAIL }}|' $GITHUB_WORKSPACE/deployment.yml
+
     - name: Save DigitalOcean kubeconfig with short-lived credentials
       run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ secrets.CLUSTER_NAME }}
     
